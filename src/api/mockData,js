@@ -1,0 +1,132 @@
+
+import one from "../bookimages/enders-game-by-orson-scott-card-ebook.png"
+import two from "../bookimages/dune.jpeg"
+import three from "../bookimages/1984.jpeg"
+import four from "../bookimages/Fahrenheit451.png"
+import five from "../bookimages/Brave New World.jpg"
+import six from "../bookimages/Hitchhiker.jpg"
+import seven from "../bookimages/Neuromancer.png"
+import eight from "../bookimages/Snow Crash.jpg"
+import nine from "../bookimages/The Martian.png"
+import ten from "../bookimages/Foundation.png"
+
+const fakeBooks = 
+[
+  {
+    "id": "1",
+    "title": "Ender's Game",
+    "authors": ["Orson Scott Card"],
+    "shelf": "read",
+    "imageLinks": {
+      "thumbnail": one
+    }
+  },
+  {
+    "id": "2",
+    "title": "Dune",
+    "authors": ["Frank Herbert"],
+    "shelf": "currentlyReading",
+    "imageLinks": {
+      "thumbnail": two
+    }
+  },
+  {
+    "id": "3",
+    "title": "1984",
+    "authors": ["George Orwell"],
+    "shelf": "wantToRead",
+    "imageLinks": {
+      "thumbnail": three
+    }
+  },
+  {
+    "id": "4",
+    "title": "Fahrenheit 451",
+    "authors": ["Ray Bradbury"],
+    "shelf": "read",
+    "imageLinks": {
+      "thumbnail": four
+    }
+  },
+  {
+    "id": "5",
+    "title": "Brave New World",
+    "authors": ["Aldous Huxley"],
+    "shelf": "currentlyReading",
+    "imageLinks": {
+      "thumbnail": five
+    }
+  },
+  {
+    "id": "6",
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "authors": ["Douglas Adams"],
+    "shelf": "read",
+    "imageLinks": {
+      "thumbnail": six
+    }
+  },
+  {
+    "id": "7",
+    "title": "Neuromancer",
+    "authors": ["William Gibson"],
+    "shelf": "currentlyReading",
+    "imageLinks": {
+      "thumbnail":seven
+    }
+  },
+  {
+    "id": "8",
+    "title": "Snow Crash",
+    "authors": ["Neal Stephenson"],
+    "shelf": "wantToRead",
+    "imageLinks": {
+      "thumbnail": eight
+    }
+  },
+  {
+    "id": "9",
+    "title": "The Martian",
+    "authors": ["Andy Weir"],
+    "shelf": "currentlyReading",
+    "imageLinks": {
+      "thumbnail": nine
+    }
+  },
+  {
+    "id": "10",
+    "title": "Foundation",
+    "authors": ["Isaac Asimov"],
+    "shelf": "read",
+    "imageLinks": {
+      "thumbnail": ten
+    }
+  }
+]
+
+
+export const get = (bookId) => {
+  const book = fakeBooks.find((b) => b.id === bookId);
+  return Promise.resolve(book);
+};
+
+export const getAll = () => {
+  return Promise.resolve(fakeBooks);
+};
+
+export const update = (book, shelf) => {
+  const updatedBook = { ...book, shelf };
+  const index = fakeBooks.findIndex((b) => b.id === book.id);
+  if (index !== -1) {
+    fakeBooks[index] = updatedBook;
+  }
+  return Promise.resolve(updatedBook);
+};
+
+export const search = (query) => {
+  // Simulate search by filtering the fakeBooks array
+  const results = fakeBooks.filter((book) =>
+    book.title.toLowerCase().includes(query.toLowerCase())
+  );
+  return Promise.resolve(results);
+};
